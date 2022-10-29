@@ -30,4 +30,10 @@ Route::middleware('auth')
         Route::get('/home', 'HomeController@index')->name('home');
 
         Route::resource('posts', 'PostController');
+
+        Route::resource('tags','TagController')->only(['show']);
     });
+
+    Route::get('{any?}' , function(){
+        return view('guest.home');
+    })->where('any','.*');
